@@ -96,13 +96,12 @@ def tree_search(problem, fringe):
     The argument fringe should be an empty queue.
     Don't worry about repeFIFOQueueated paths to a state. [Fig. 3.8]"""
     fringe.append(Node(problem.initial))
-    expandidos = len(fringe)
     visitados = 0
     while fringe:
         node = fringe.pop()
         visitados += 1
         if problem.goal_test(node.state):
-            print("Nodos visitados %d y expandidos %d", visitados, expandidos)
+            print "Nodos expandidos ",fringe.expandidos," y visitados ",visitados
             return node
         fringe.extend(node.expand(problem))
     return None

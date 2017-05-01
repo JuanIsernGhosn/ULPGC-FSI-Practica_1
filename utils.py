@@ -764,31 +764,40 @@ class FIFOQueue(Queue):
 class NoInformada():
     def __init__(self):
         self.A = []
+        self.expandidos = 0
 
     def append(self, item):
         self.A.append(item)
+        self.expandidos += 1
 
     def pop(self):
         self.A.sort(key=lambda x:x.path_cost)
         return self.A.pop(0)
 
     def extend(self, items):
+        tam = len(self.A)
         self.A.extend(items)
-
+        tam1 = len(self.A)
+        self.expandidos += tam1-tam
 
 class Informada():
     def __init__(self):
         self.A = []
+        self.expandidos = 0
 
     def append(self, item):
         self.A.append(item)
+        self.expandidos += 1
 
     def pop(self):
         self.A.sort(key=lambda x:x.estimation)
         return self.A.pop(0)
 
     def extend(self, items):
+        tam = len(self.A)
         self.A.extend(items)
+        tam1 = len(self.A)
+        self.expandidos += tam1 - tam
 
 
 class PriorityQueue(Queue):
